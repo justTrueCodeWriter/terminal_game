@@ -142,7 +142,7 @@ void BattleWithDungeonEnemy(Character arrayCharacter[1], DungeonEnemy arrayDunge
 }
 
 void Battle(Character arrayCharacter[1], Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
-	int switcher;
+	int switcher=3;
 	switch (switcher) {
 	case(1):
 		BattleWithEnemy(arrayCharacter, arrayEnemy);
@@ -167,6 +167,8 @@ int main() {
 	/*printf("\a");*/
 	CharacterStats(arrayCharacter);
 	EnemyStats(arrayEnemy);
+	BossStats(arrayBoss);
+	DungeonEnemyStats(arrayDungeonEnemy);
 	Battle(arrayCharacter, arrayEnemy, arrayBoss, arrayDungeonEnemy);
 
 	/*for (int i = 0; i < 1; i++) {
