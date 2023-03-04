@@ -61,7 +61,6 @@ void Battle(Character array_1[1], Enemy array_2[1]) {
 int main() {
 	Character array_1[1];
 	Enemy array_2[1];
-	system("chcp 1251");
 	/*system("cls");*/
 	/*printf("\a");*/
 	CharacterStats(array_1);
