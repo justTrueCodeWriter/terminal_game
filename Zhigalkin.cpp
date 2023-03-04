@@ -10,6 +10,14 @@ struct Enemy {
 	int health, damage, gold;
 };
 
+struct Boss {
+	int health, damage, gold;
+};
+
+struct DungeonEnemy {
+	int health, damage, gold;
+};
+
 void CharacterStats(Character array_1[1]) {
 	for (int i = 0; i < 1; i++) {
 		array_1[i].health = 30;
@@ -23,6 +31,22 @@ void EnemyStats(Enemy array_2[1]) {
 		array_2[i].health = 5;
 		array_2[i].damage = 2;
 		array_2[i].gold = 10;
+	}
+}
+
+void BossStats(Boss arrayBoss[1]) {
+	for (int i = 0; i < 1; i++) {
+		arrayBoss[i].health = 30;
+		arrayBoss[i].damage = 10;
+		arrayBoss[i].gold = 50;
+	}
+}
+
+void DungeonEnemyStats(DungeonEnemy arrayDungeonEnemy[1]) {
+	for (int i = 0; i < 1; i++) {
+		arrayDungeonEnemy[i].health = 12;
+		arrayDungeonEnemy[i].damage = 6;
+		arrayDungeonEnemy[i].gold = 20;
 	}
 }
 
@@ -61,6 +85,8 @@ void Battle(Character array_1[1], Enemy array_2[1]) {
 int main() {
 	Character array_1[1];
 	Enemy array_2[1];
+	Boss arrayBoss[1];
+	DungeonEnemy arrayDungeonEnemy[1];
 	/*system("cls");*/
 	/*printf("\a");*/
 	CharacterStats(array_1);
