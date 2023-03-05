@@ -75,18 +75,6 @@ void DungeonEnemyStats(DungeonEnemy arrayDungeonEnemy[1]) {
 	}
 }
 
-//void AppleStats(Apple arrayApple[1]) {
-//	for (int i = 0; i < 1; i++) {
-//		arrayApple[i].heal = 10;
-//	}
-//}
-//
-//void HealingPotionStats(HealingPotion arrayHealingPotion[1]) {
-//	for (int i = 0; i < 1; i++) {
-//		arrayHealingPotion[i].heal = 25;
-//	}
-//}
-
 void CharacterUpgradeWeapon(Character arrayCharacter[1], Weapon arrayWeapon[1]) {
 	int IndexWeapon = 3;
 	switch (IndexWeapon) {
@@ -268,6 +256,27 @@ void CharacterHealing(Character arrayCharacter[1], Healing arrayHealing[1]) {
 	}
 }
 
+void IncreaseDifficulty(Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
+	int NumberOfSteps = 100;
+	if (NumberOfSteps == 100) {
+		for (int i = 0; i < 1; i++) {
+			arrayEnemy[i].health *= 2;
+			arrayEnemy[i].damage *= 2;
+			arrayEnemy[i].gold *= 2;
+		}
+		for (int i = 0; i < 1; i++) {
+			arrayBoss[i].health *= 2;
+			arrayBoss[i].damage *= 2;
+			arrayBoss[i].gold *= 2;
+		}
+		for (int i = 0; i < 1; i++) {
+			arrayDungeonEnemy[i].health *= 2;
+			arrayDungeonEnemy[i].damage *= 2;
+			arrayDungeonEnemy[i].gold *= 2;
+		}
+	}
+}
+
 int main() {
 	Character arrayCharacter[1];
 	Enemy arrayEnemy[1];
@@ -279,19 +288,23 @@ int main() {
 	/*system("cls");*/
 	/*printf("\a");*/
 	CharacterStats(arrayCharacter);
-	EnemyStats(arrayEnemy);
+	EnemyStats(arrayEnemy); 
 	BossStats(arrayBoss);
 	DungeonEnemyStats(arrayDungeonEnemy);
+	IncreaseDifficulty(arrayEnemy, arrayBoss, arrayDungeonEnemy);
+	//Вывод характеристик мобов после увеличения сложности
+	for (int i = 0; i < 1; i++) {
+		printf("%d %d %d\n", arrayEnemy[i].health, arrayEnemy[i].damage, arrayEnemy[i].gold);
+		printf("%d %d %d\n", arrayBoss[i].health, arrayBoss[i].damage, arrayBoss[i].gold);
+		printf("%d %d %d\n", arrayDungeonEnemy[i].health, arrayDungeonEnemy[i].damage, arrayDungeonEnemy[i].gold);
+	}
+
 	/*Weapon1Stats(weapon1);*/
 	/*Battle(arrayCharacter, arrayEnemy, arrayBoss, arrayDungeonEnemy);*/
 
-	CharacterHealing(arrayCharacter, arrayHealing);
+	/*CharacterHealing(arrayCharacter, arrayHealing);*/
 
 	/*CharacterUpgradeWeapon(arrayCharacter, arrayWeapon);*/
 
 	/*CharacterUpgradeArmor(arrayCharacter, arrayArmor);*/
-
-	/*for (int i = 0; i < 1; i++) {
-		printf("%d %d %d %d %d", array_1[i].health, array_1[i].damage, array_1[i].shield, array_1[i].gold, array_1[i].totalHP);
-	}*/
 }
