@@ -27,7 +27,9 @@ struct HealingPotion {
 };
 
 struct Weapon {
-	int damage;
+	int weapon_1 /*damage*/ = 5;
+	int weapon_2 /*damage*/ = 12;
+	int weapon_3 /*damage*/ = 25;
 };
 
 void CharacterStats(Character arrayCharacter[1]) {
@@ -74,20 +76,34 @@ void HealingPotionStats(HealingPotion arrayHealingPotion[1]) {
 	}
 }
 
-void Weapon1Stats(Weapon weapon1[1]) {
-	for (int i = 0; i < 1; i++) {
-		weapon1[i].damage = 5;
-	}
-}
+//void Weapon1Stats(Weapon arrayWeapon[1]) {
+//	for (int i = 0; i < 1; i++) {
+//		arrayWeapon[i].weapon1 = 5;
+//	}
+//}
 
-void CharacterUpgradeWeapon(Character arrayCharacter[1], Weapon weapon1[1]) {
-	int IndexWeapon = 1;
+void CharacterUpgradeWeapon(Character arrayCharacter[1], Weapon arrayWeapon[1]) {
+	int IndexWeapon = 3;
 	switch (IndexWeapon) {
 	case 1:
 		for (int i = 0; i < 1; i++) {
-			arrayCharacter[i].damage += weapon1[i].damage;
+			arrayCharacter[i].damage += arrayWeapon[i].weapon_1;
 		}
-		printf("Your damage has been increased by %d\n", weapon1->damage); Sleep(500);
+		printf("Your damage has been increased by %d\n", arrayWeapon->weapon_1); Sleep(500);
+		printf("Your current damage is %d\n", arrayCharacter->damage); Sleep(500);
+		break;
+	case 2:
+		for (int i = 0; i < 1; i++) {
+			arrayCharacter[i].damage += arrayWeapon[i].weapon_2;
+		}
+		printf("Your damage has been increased by %d\n", arrayWeapon->weapon_2); Sleep(500);
+		printf("Your current damage is %d\n", arrayCharacter->damage); Sleep(500);
+		break;
+	case 3:
+		for (int i = 0; i < 1; i++) {
+			arrayCharacter[i].damage += arrayWeapon[i].weapon_3;
+		}
+		printf("Your damage has been increased by %d\n", arrayWeapon->weapon_3); Sleep(500);
 		printf("Your current damage is %d\n", arrayCharacter->damage); Sleep(500);
 		break;
 	}
@@ -227,7 +243,7 @@ int main() {
 	DungeonEnemy arrayDungeonEnemy[1];
 	Apple arrayApple[1];
 	HealingPotion arrayHealingPotion[1];
-	Weapon weapon1[1];
+	Weapon arrayWeapon[1];
 	/*system("cls");*/
 	/*printf("\a");*/
 	CharacterStats(arrayCharacter);
@@ -236,12 +252,12 @@ int main() {
 	DungeonEnemyStats(arrayDungeonEnemy);
 	AppleStats(arrayApple);
 	HealingPotionStats(arrayHealingPotion);
-	Weapon1Stats(weapon1);
+	/*Weapon1Stats(weapon1);*/
 	/*Battle(arrayCharacter, arrayEnemy, arrayBoss, arrayDungeonEnemy);*/
 
 	/*Healing(arrayCharacter, arrayApple, arrayHealingPotion);*/
 
-	CharacterUpgradeWeapon(arrayCharacter, weapon1);
+	CharacterUpgradeWeapon(arrayCharacter, arrayWeapon);
 
 	/*for (int i = 0; i < 1; i++) {
 		printf("%d %d %d %d %d", array_1[i].health, array_1[i].damage, array_1[i].shield, array_1[i].gold, array_1[i].totalHP);
