@@ -259,6 +259,7 @@ void CharacterHealing(Character arrayCharacter[1], Healing arrayHealing[1]) {
 void IncreaseDifficulty(Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
 	int NumberOfSteps = 100;
 	if (NumberOfSteps == 100) {
+		printf("Difficulty has been increased\n");
 		for (int i = 0; i < 1; i++) {
 			arrayEnemy[i].health *= 2;
 			arrayEnemy[i].damage *= 2;
@@ -294,9 +295,9 @@ int main() {
 	IncreaseDifficulty(arrayEnemy, arrayBoss, arrayDungeonEnemy);
 	//Вывод характеристик мобов после увеличения сложности
 	for (int i = 0; i < 1; i++) {
-		printf("%d %d %d\n", arrayEnemy[i].health, arrayEnemy[i].damage, arrayEnemy[i].gold);
-		printf("%d %d %d\n", arrayBoss[i].health, arrayBoss[i].damage, arrayBoss[i].gold);
-		printf("%d %d %d\n", arrayDungeonEnemy[i].health, arrayDungeonEnemy[i].damage, arrayDungeonEnemy[i].gold);
+		printf("%d %d %d  -  Enemy\n", arrayEnemy[i].health, arrayEnemy[i].damage, arrayEnemy[i].gold);
+		printf("%d %d %d  -  Boss\n", arrayBoss[i].health, arrayBoss[i].damage, arrayBoss[i].gold);
+		printf("%d %d %d  -  DungeonEnemy\n", arrayDungeonEnemy[i].health, arrayDungeonEnemy[i].damage, arrayDungeonEnemy[i].gold);
 	}
 
 	/*Weapon1Stats(weapon1);*/
