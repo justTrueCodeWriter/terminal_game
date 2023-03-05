@@ -32,6 +32,12 @@ struct Weapon {
 	int weapon_3 /*damage*/ = 25;
 };
 
+struct Armor {
+	int armor_1 /*health*/ = 15;
+	int armor_2 /*health*/ = 28;
+	int armor_3 /*health*/ = 45;
+};
+
 void CharacterStats(Character arrayCharacter[1]) {
 	for (int i = 0; i < 1; i++) {
 		arrayCharacter[i].health = 30;
@@ -105,6 +111,33 @@ void CharacterUpgradeWeapon(Character arrayCharacter[1], Weapon arrayWeapon[1]) 
 		}
 		printf("Your damage has been increased by %d\n", arrayWeapon->weapon_3); Sleep(500);
 		printf("Your current damage is %d\n", arrayCharacter->damage); Sleep(500);
+		break;
+	}
+}
+
+void CharacterUpgradeArmor(Character arrayCharacter[1], Armor arrayArmor[1]) {
+	int IndexArmor = 3;
+	switch (IndexArmor) {
+	case 1:
+		for (int i = 0; i < 1; i++) {
+			arrayCharacter[i].health += arrayArmor[i].armor_1;
+		}
+		printf("Your health has been increased by %d\n", arrayArmor->armor_1); Sleep(500);
+		printf("Your current health is %d\n", arrayCharacter->health); Sleep(500);
+		break;
+	case 2:
+		for (int i = 0; i < 1; i++) {
+			arrayCharacter[i].health += arrayArmor[i].armor_2;
+		}
+		printf("Your health has been increased by %d\n", arrayArmor->armor_2); Sleep(500);
+		printf("Your current health is %d\n", arrayCharacter->health); Sleep(500);
+		break;
+	case 3:
+		for (int i = 0; i < 1; i++) {
+			arrayCharacter[i].health += arrayArmor[i].armor_3;
+		}
+		printf("Your health has been increased by %d\n", arrayArmor->armor_3); Sleep(500);
+		printf("Your current health is %d\n", arrayCharacter->health); Sleep(500);
 		break;
 	}
 }
@@ -244,6 +277,7 @@ int main() {
 	Apple arrayApple[1];
 	HealingPotion arrayHealingPotion[1];
 	Weapon arrayWeapon[1];
+	Armor arrayArmor[1];
 	/*system("cls");*/
 	/*printf("\a");*/
 	CharacterStats(arrayCharacter);
@@ -257,7 +291,9 @@ int main() {
 
 	/*Healing(arrayCharacter, arrayApple, arrayHealingPotion);*/
 
-	CharacterUpgradeWeapon(arrayCharacter, arrayWeapon);
+	/*CharacterUpgradeWeapon(arrayCharacter, arrayWeapon);*/
+
+	CharacterUpgradeArmor(arrayCharacter, arrayArmor);
 
 	/*for (int i = 0; i < 1; i++) {
 		printf("%d %d %d %d %d", array_1[i].health, array_1[i].damage, array_1[i].shield, array_1[i].gold, array_1[i].totalHP);
