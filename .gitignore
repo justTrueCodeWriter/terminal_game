@@ -1,11 +1,7 @@
 .vs/
 x64/
-terminal_game.sln
-terminal_game.vcxproj
-terminal_game.vcxproj.filters
-terminal_game.vcxproj.user
 
-terminal_game.sln
-terminal_game.vcxproj
-terminal_game.vcxproj.filters
-terminal_game.vcxproj.user
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
