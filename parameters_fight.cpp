@@ -2,46 +2,8 @@
 #include <stdio.h>
 #include <Windows.h>
 
-struct Character {
-	int health, damage, gold;
-};
+#include "character_parameters.h"
 
-struct Enemy {
-	int health, damage, gold;
-};
-
-struct Boss {
-	int health, damage, gold;
-};
-
-struct DungeonEnemy {
-	int health, damage, gold;
-};
-
-struct Apple {
-	int heal;
-};
-
-struct HealingPotion {
-	int heal;
-};
-
-struct Healing {
-	int Apple /*healing*/ = 10;
-	int HealingPotion /*healing*/ = 25;
-};
-
-struct Weapon {
-	int weapon_1 /*damage*/ = 5;
-	int weapon_2 /*damage*/ = 12;
-	int weapon_3 /*damage*/ = 25;
-};
-
-struct Armor {
-	int armor_1 /*health*/ = 15;
-	int armor_2 /*health*/ = 28;
-	int armor_3 /*health*/ = 45;
-};
 
 void CharacterStats(Character arrayCharacter[1]) {
 	for (int i = 0; i < 1; i++) {
@@ -278,6 +240,7 @@ void IncreaseDifficulty(Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arr
 	}
 }
 
+#if 0
 int main() {
 	Character arrayCharacter[1];
 	Enemy arrayEnemy[1];
@@ -309,3 +272,4 @@ int main() {
 	/*CharacterUpgradeArmor(arrayCharacter, arrayArmor);*/
 }
 //DEAD INSIDE
+#endif
