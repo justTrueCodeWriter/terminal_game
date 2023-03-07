@@ -10,7 +10,7 @@ const int x = 121, y = 40;
 int map[y][x];
 bool game = true;
 
-Character mas[1];
+Character hero[1];
 
 void DrawMap(); void Move(); void GetMap();
 
@@ -44,7 +44,8 @@ void DrawMap() {
 	for (int i = 0; i < y; i++) {
 		for (int j = 0; j < x; j++) {
 			int isCharacterMove = 0;
-			if (j == mas->xCharacter and i == mas->yCharacter) {
+			int isWall = 0;
+			if (j == hero->xCharacter and i == hero->yCharacter) {
 				map[i][j] = '@';
 				isCharacterMove = 1;
 			}
@@ -61,16 +62,20 @@ void Move() {
 		game = false;
 		break;
 	case 'w':
-		mas->yCharacter--;
+		if (map[(hero->yCharacter)-1][(hero->xCharacter)]!='#')
+			hero->yCharacter--;
 		break;
 	case 'a':
-		mas->xCharacter--;
+		if (map[hero->yCharacter][(hero->xCharacter)-1]!='#')
+		hero->xCharacter--;
 		break;
 	case 'd':
-		mas->xCharacter++;
+		if (map[hero->yCharacter][(hero->xCharacter)+1]!='#')
+		hero->xCharacter++;
 		break;
 	case 's':
-		mas->yCharacter++;
+		if (map[(hero->yCharacter)+1][hero->xCharacter]!='#')
+		hero->yCharacter++;
 		break;
 	}
 }
