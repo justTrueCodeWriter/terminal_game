@@ -2,7 +2,7 @@
 
 struct Character {
 	int health, damage, gold;
-	int xCharacter = 120/2, yCharacter = 40/2;
+	int xCharacter = 26, yCharacter = 15;
 };
 
 struct Enemy {

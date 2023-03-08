@@ -136,6 +136,7 @@
     <ClInclude Include="character_parameters.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\Movetest\Movetest\map_2.txt" />
     <Text Include="map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

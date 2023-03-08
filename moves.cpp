@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <conio.h>
 
-const int x = 121, y = 40;
+const int x = 104, y = 43;
 
 #include "character_parameters.h"
 
@@ -26,7 +26,7 @@ int main() {
 void GetMap() {
 	FILE* m;
 
-	if (fopen_s(&m, "map.txt", "rt") != 0) {
+	if (fopen_s(&m, "map_2.txt", "rt") != 0) {
 		printf("File couldn't open\n");
 		exit(1);
 	}
@@ -62,19 +62,19 @@ void Move() {
 		game = false;
 		break;
 	case 'w':
-		if (map[(hero->yCharacter)-1][(hero->xCharacter)]!='#')
+		if (map[(hero->yCharacter)-1][(hero->xCharacter)]!='#' && map[(hero->yCharacter) - 1][(hero->xCharacter)] != 219)
 			hero->yCharacter--;
 		break;
 	case 'a':
-		if (map[hero->yCharacter][(hero->xCharacter)-1]!='#')
+		if (map[hero->yCharacter][(hero->xCharacter)-1]!='#' && map[hero->yCharacter][(hero->xCharacter) - 1] != 219)
 		hero->xCharacter--;
 		break;
 	case 'd':
-		if (map[hero->yCharacter][(hero->xCharacter)+1]!='#')
+		if (map[hero->yCharacter][(hero->xCharacter)+1]!='#' && map[hero->yCharacter][(hero->xCharacter) + 1] != 219)
 		hero->xCharacter++;
 		break;
 	case 's':
-		if (map[(hero->yCharacter)+1][hero->xCharacter]!='#')
+		if (map[(hero->yCharacter)+1][hero->xCharacter]!='#' && map[(hero->yCharacter) + 1][hero->xCharacter] != 219)
 		hero->yCharacter++;
 		break;
 	}

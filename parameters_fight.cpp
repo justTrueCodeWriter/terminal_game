@@ -271,5 +271,4 @@ int main() {
 
 	/*CharacterUpgradeArmor(arrayCharacter, arrayArmor);*/
 }
-//DEAD INSIDE
 #endif
