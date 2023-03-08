@@ -7,6 +7,8 @@ const int x = 104, y = 43;
 
 #include "character_parameters.h"
 
+const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
+
 int map[y][x];
 bool game = true;
 
