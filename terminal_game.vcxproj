@@ -134,10 +134,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character_parameters.h" />
+    <ClInclude Include="stopping_objects.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Movetest\Movetest\map_2.txt" />
     <Text Include="map.txt" />
+    <Text Include="map_2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

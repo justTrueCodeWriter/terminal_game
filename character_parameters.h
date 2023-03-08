@@ -1,15 +1,16 @@
 #pragma once
 
-#define SCREEN_WIDTH 121
-#define SCREEN_HEIGHT 40
+#define SCREEN_WIDTH 104
+#define SCREEN_HEIGHT 43
 
 struct Character {
-	int health, damage, gold;
-	int xCharacter = SCREEN_WIDTH/2, yCharacter = SCREEN_HEIGHT/2;
+	int health=100, damage=5, gold=0;
+	int xCharacter = SCREEN_WIDTH/4, yCharacter = SCREEN_HEIGHT/4;
 };
 
 struct Enemy {
 	int health, damage, gold;
+	int xEnemy = SCREEN_WIDTH / 4 + 5, yEnemy = SCREEN_HEIGHT / 4;
 };
 
 struct Boss {

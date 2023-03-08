@@ -4,7 +4,6 @@
 
 #include "character_parameters.h"
 
-
 void CharacterStats(Character arrayCharacter[1]) {
 	for (int i = 0; i < 1; i++) {
 		arrayCharacter[i].health = 30;
