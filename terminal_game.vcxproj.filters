@@ -27,9 +27,15 @@
     <ClCompile Include="test_main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\Trader\Trader\Trader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="stopping_objects.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,8 +43,6 @@
     <Text Include="map.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="..\Movetest\Movetest\map_2.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
+    <Text Include="map_2.txt" />
   </ItemGroup>
 </Project>

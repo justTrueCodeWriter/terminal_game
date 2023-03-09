@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Trader\Trader\Trader.cpp" />
     <ClCompile Include="moves.cpp" />
     <ClCompile Include="parameters_fight.cpp" />
     <ClCompile Include="quests.cpp" />
