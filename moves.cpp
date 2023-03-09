@@ -12,12 +12,15 @@ int map[y][x];
 bool game = true;
 
 Character hero[1];
+Healing heal[1];
 
 Enemy villian[1];
 
 void draw_map(); 
 void characterMoves(); 
 void GetMap();
+void SaveFile();
+void BinaryFileOutput();
 
 void enemy_activation();
 void fight();
@@ -103,23 +106,59 @@ void fight() {
 void characterMoves() {
 	switch (_getch()) {
 	case 'z':
+		SaveFile();
+		BinaryFileOutput();
+		system("\npause");
 		game = false;
 		break;
 	case 'w':
 		if (map[(hero->yCharacter) - 1][hero->xCharacter] != 'E' && map[(hero->yCharacter) - 1][hero->xCharacter] != 219)
 			hero->yCharacter--;
+		hero->steps++;
 		break;
 	case 'a':
 		if (map[hero->yCharacter][(hero->xCharacter) - 1] != 'E' && map[hero->yCharacter][(hero->xCharacter) - 1] != 219)
 			hero->xCharacter--;
+		hero->steps++;
 		break;
 	case 'd':
 		if (map[hero->yCharacter][(hero->xCharacter)+1]!='E' && map[hero->yCharacter][(hero->xCharacter) + 1] != 219)
 			hero->xCharacter++;
+		hero->steps++;
 		break;
 	case 's':
 		if (map[(hero->yCharacter)+1][hero->xCharacter]!='E' && map[(hero->yCharacter) + 1][hero->xCharacter] != 219)
 			hero->yCharacter++;
+		hero->steps++;
 		break;
 	}
+}
+
+
+void SaveFile() {
+	FILE* printBinary = NULL;
+	if (fopen_s(&printBinary, "save.bin", "wb") != NULL) {
+		printf("\nError opening file");
+			exit(1);
+	}
+	fwrite(&hero->health, sizeof(int), 1, printBinary);
+	fwrite(&hero->damage, sizeof(int), 1, printBinary);
+	fwrite(&hero->gold, sizeof(int), 1, printBinary);
+	fwrite(&hero->steps, sizeof(int), 1, printBinary);
+	fclose(printBinary);
+}
+
+void BinaryFileOutput() {
+	FILE* output = NULL;
+	if (fopen_s(&output, "save.bin", "rb") != NULL) {
+		printf("\nError opening file");
+		exit(1);
+	}
+	fread(&hero->health, sizeof(int), 1, output);
+	fread(&hero->damage, sizeof(int), 1, output);
+	fread(&hero->gold, sizeof(int), 1, output);
+	fread(&hero->steps, sizeof(int), 1, output);
+
+	printf("%d %d %d %d\n", hero->health, hero->damage, hero->gold, hero->steps);
+	fclose(output);
 }

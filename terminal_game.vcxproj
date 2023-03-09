@@ -142,6 +142,9 @@
     <Text Include="map_2.txt" />
     <Text Include="map_3.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="save.bin" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

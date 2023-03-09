@@ -4,7 +4,7 @@
 #define SCREEN_HEIGHT 43
 
 struct Character {
-	int health=100, damage=5, gold=0;
+	int health = 100, damage = 5, gold = 0, steps = 0;
 	int xCharacter = SCREEN_WIDTH/4, yCharacter = SCREEN_HEIGHT/4;
 };
 
