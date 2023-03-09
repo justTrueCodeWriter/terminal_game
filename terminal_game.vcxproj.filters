@@ -27,7 +27,7 @@
     <ClCompile Include="test_main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\Trader\Trader\Trader.cpp">
+    <ClCompile Include="Trader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,11 +44,8 @@
       <Filter>Файлы ресурсов</Filter>
     </Text>
     <Text Include="map_2.txt" />
-<<<<<<< Updated upstream
-=======
     <Text Include="map_3.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>

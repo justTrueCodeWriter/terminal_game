@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Trader\Trader\Trader.cpp" />
     <ClCompile Include="moves.cpp" />
     <ClCompile Include="parameters_fight.cpp" />
     <ClCompile Include="quests.cpp" />
     <ClCompile Include="test_main.cpp" />
+    <ClCompile Include="Trader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character_parameters.h" />
