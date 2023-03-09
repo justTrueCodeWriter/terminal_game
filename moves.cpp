@@ -21,7 +21,7 @@ void characterMoves();
 void GetMap();
 void SaveFile();
 void BinaryFileOutput();
-
+void InteractionWithTheChest();
 void enemy_activation();
 void fight();
 
@@ -72,22 +72,7 @@ void draw_map() {
 				map[i][j] = 'T';
 			}
 			if (hero->xCharacter == chest->xChest and hero->yCharacter == chest->yChest) {
-				system("cls");
-				int switcher = 0;
-				do {
-					printf("Do you want to open the chest?\n"); printf("1 - Yes\n2 - No\n"); scanf_s("%d", &switcher);
-				} while (switcher > 3 or switcher < 1);
-				system("cls");
-				switch (switcher) {
-				case 1:
-					hero->gold += chest->gold;
-					chest->xChest = -1; chest->yChest = -1;
-					break;
-				case 2:
-					hero->xCharacter = chest->xChest + 1;
-					break;
-				}
-
+				InteractionWithTheChest();
 			}
 			printf("%c", map[i][j]);
 			if (isCharacterMove == 1)
@@ -186,4 +171,22 @@ void BinaryFileOutput() {
 
 	printf("%d %d %d %d\n", hero->health, hero->damage, hero->gold, hero->steps);
 	fclose(output);
+}
+
+void InteractionWithTheChest() {
+	system("cls");
+	int switcher = 0;
+	do {
+		printf("Do you want to open the chest?\n"); printf("1 - Yes\n2 - No\n"); scanf_s("%d", &switcher);
+	} while (switcher > 3 or switcher < 1);
+	system("cls");
+	switch (switcher) {
+	case 1:
+		hero->gold += chest->gold;
+		chest->xChest = -1; chest->yChest = -1;
+		break;
+	case 2:
+		hero->xCharacter = chest->xChest + 1;
+		break;
+	}
 }
