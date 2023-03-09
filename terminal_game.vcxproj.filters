@@ -44,5 +44,11 @@
       <Filter>Файлы ресурсов</Filter>
     </Text>
     <Text Include="map_2.txt" />
+<<<<<<< Updated upstream
+=======
+    <Text Include="map_3.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

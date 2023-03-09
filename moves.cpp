@@ -20,7 +20,7 @@ void characterMoves();
 void GetMap();
 
 void enemy_activation();
-void enemy_moves();
+void fight();
 
 int main() {
 	GetMap();
@@ -69,17 +69,34 @@ void draw_map() {
 				map[i][j] = ' ';
 		}
 	}
+	printf("\nhealth: %d", hero->health);
+	printf("\ngold: %d", hero->gold);
 }
 
 void enemy_activation() {
-	if (abs(villian->xEnemy - hero->xCharacter) <= 5 && abs(villian->yEnemy - hero->yCharacter) <= 5)
-		enemy_moves();
+	if (abs(villian->xEnemy - hero->xCharacter) <= 5 && abs(villian->yEnemy - hero->yCharacter) <= 5) 
+		printf("Enemy is close");
 
+	if (abs(villian->xEnemy - hero->xCharacter) < 2 && abs(villian->yEnemy - hero->yCharacter) < 2)
+		fight(); 
 }
 
-void enemy_moves() {
+void fight() {
 
-	if ()
+	system("cls");
+	printf("Fight started: \n");
+
+	switch (_getch()) {
+	case 'A': 
+		printf("Attack");
+		break;
+	case 'D': 
+		printf("Defend");
+		break;
+	case 'E': 
+		printf("Escape");
+		break;
+	}
 
 }
 
