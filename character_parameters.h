@@ -45,3 +45,8 @@ struct Armor {
 	int armor_2 /*health*/ = 28;
 	int armor_3 /*health*/ = 45;
 };
+
+struct Treasure {
+	int xChest = 14, yChest = 25;
+	int gold = 150;
+};

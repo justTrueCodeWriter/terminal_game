@@ -13,7 +13,7 @@ bool game = true;
 
 Character hero[1];
 Healing heal[1];
-
+Treasure chest[1];
 Enemy villian[1];
 
 void draw_map(); 
@@ -26,6 +26,7 @@ void enemy_activation();
 void fight();
 
 int main() {
+	srand(NULL);
 	GetMap();
 	do {
 		draw_map();
@@ -66,6 +67,27 @@ void draw_map() {
 			if (j == villian->xEnemy and i == villian->yEnemy) {
 				map[i][j] = 'E';
 				isVillianMove = 1;
+			}
+			if (i == chest->yChest and j == chest->xChest) {
+				map[i][j] = 'T';
+			}
+			if (hero->xCharacter == chest->xChest and hero->yCharacter == chest->yChest) {
+				system("cls");
+				int switcher = 0;
+				do {
+					printf("Do you want to open the chest?\n"); printf("1 - Yes\n2 - No\n"); scanf_s("%d", &switcher);
+				} while (switcher > 3 or switcher < 1);
+				system("cls");
+				switch (switcher) {
+				case 1:
+					hero->gold += chest->gold;
+					chest->xChest = -1; chest->yChest = -1;
+					break;
+				case 2:
+					hero->xCharacter = chest->xChest + 1;
+					break;
+				}
+
 			}
 			printf("%c", map[i][j]);
 			if (isCharacterMove == 1)
