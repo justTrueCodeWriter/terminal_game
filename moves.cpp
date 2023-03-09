@@ -73,7 +73,9 @@ void draw_map() {
 		}
 	}
 	printf("\nhealth: %d", hero->health);
+	printf("\ndamage: %d", hero->damage);
 	printf("\ngold: %d", hero->gold);
+	printf("\nsteps: %d", hero->steps);
 }
 
 void enemy_activation() {
@@ -107,6 +109,7 @@ void characterMoves() {
 	switch (_getch()) {
 	case 'z':
 		SaveFile();
+		system("cls");
 		BinaryFileOutput();
 		system("\npause");
 		game = false;
