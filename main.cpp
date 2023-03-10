@@ -55,7 +55,7 @@ int main() {
 void GetMap() {
 	FILE* m;
 
-	if (fopen_s(&m, "map_2.txt", "rt") != 0) {
+	if (fopen_s(&m, "map_4.txt", "rt") != 0) {
 		printf("File couldn't open\n");
 		exit(1);
 	}

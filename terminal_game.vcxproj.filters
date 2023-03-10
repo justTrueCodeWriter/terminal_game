@@ -50,6 +50,9 @@
     <Text Include="map_3.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="map_4.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="save.bin">
