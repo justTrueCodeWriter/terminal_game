@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "character_parameters.h"
+#include "fight.h"
 
 const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
 
@@ -15,6 +16,8 @@ Character hero[1];
 Healing heal[1];
 Treasure chest[1];
 Enemy villian[1];
+DungeonEnemy arrayDungeonEnemy[1];
+Boss arrayBoss[1];
 
 void Menu();
 void draw_map(); 
@@ -24,7 +27,6 @@ void SaveFile();
 void BinaryFileOutput();
 void InteractionWithTheChest();
 void enemy_activation();
-void fight();
 
 int main() {
 	srand(NULL);
@@ -60,15 +62,10 @@ void draw_map() {
 	for (int i = 0; i < y; i++) {
 		for (int j = 0; j < x; j++) {
 			int isCharacterMove = 0;
-			int isVillianMove = 0;
 			int isWall = 0;
 			if (j == hero->xCharacter and i == hero->yCharacter) {
 				map[i][j] = '@';
 				isCharacterMove = 1;
-			}
-			if (j == villian->xEnemy and i == villian->yEnemy) {
-				map[i][j] = 'E';
-				isVillianMove = 1;
 			}
 			if (i == chest->yChest and j == chest->xChest) {
 				map[i][j] = 'T';
@@ -88,30 +85,27 @@ void draw_map() {
 }
 
 void enemy_activation() {
-	if (abs(villian->xEnemy - hero->xCharacter) <= 5 && abs(villian->yEnemy - hero->yCharacter) <= 5) 
-		printf("Enemy is close");
+	int IndexEnemy = 0;
 
-	if (abs(villian->xEnemy - hero->xCharacter) < 2 && abs(villian->yEnemy - hero->yCharacter) < 2)
-		fight(); 
-}
+	if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'E' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'E' ||
+		map[hero->yCharacter][(hero->xCharacter) + 1] == 'E' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'E' ||
+		map[hero->yCharacter][hero->xCharacter] == 'E')
+		IndexEnemy = 1;
+	else if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'B' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'B' ||
+		map[hero->yCharacter][(hero->xCharacter) + 1] == 'B' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'B' ||
+		map[hero->yCharacter][hero->xCharacter] == 'B')
+		IndexEnemy = 2;
+	else if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'D' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'D' ||
+		map[hero->yCharacter][(hero->xCharacter) + 1] == 'D' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'D' ||
+		map[hero->yCharacter][hero->xCharacter] == 'D')
+		IndexEnemy = 3;
 
-void fight() {
+	printf("\n");
+	EnemyStats(villian);
+	BossStats(arrayBoss);
+	DungeonEnemyStats(arrayDungeonEnemy);
 
-	system("cls");
-	printf("Fight started: \n");
-
-	switch (_getch()) {
-	case 'A': 
-		printf("Attack");
-		break;
-	case 'D': 
-		printf("Defend");
-		break;
-	case 'E': 
-		printf("Escape");
-		break;
-	}
-
+	Battle(IndexEnemy, hero, villian, arrayBoss, arrayDungeonEnemy);
 }
 
 void characterMoves() {

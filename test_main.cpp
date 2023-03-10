@@ -2,7 +2,6 @@
 int main() {
 
 #if 0
-	moves_test();
 #endif
 
 }

@@ -18,7 +18,7 @@
     <ClCompile Include="parameters_fight.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="moves.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="quests.cpp">
@@ -36,6 +36,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="stopping_objects.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="fight.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

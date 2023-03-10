@@ -1,3 +1,3 @@
 #pragma once
 
-char stoppingObjects[] = {'Û', ' ', ' ', ' '};
+char stoppingObjects[] = {'Û', 'E', 'B', 'D'};

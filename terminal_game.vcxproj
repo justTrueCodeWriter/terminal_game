@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="moves.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="parameters_fight.cpp" />
     <ClCompile Include="quests.cpp" />
     <ClCompile Include="test_main.cpp" />
@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character_parameters.h" />
+    <ClInclude Include="fight.h" />
     <ClInclude Include="stopping_objects.h" />
   </ItemGroup>
   <ItemGroup>

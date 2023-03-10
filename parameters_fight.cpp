@@ -152,12 +152,12 @@ void BattleWithBoss(Character arrayCharacter[1], Boss arrayBoss[1]) {
 }
 
 void BattleWithDungeonEnemy(Character arrayCharacter[1], DungeonEnemy arrayDungeonEnemy[1]) {
-	for (int i = 0; i < 1; i++) {
-		arrayDungeonEnemy[i].health = arrayDungeonEnemy[i].health - arrayCharacter[i].damage;
+	while (arrayCharacter->health > 0 || arrayDungeonEnemy->health > 0) {
+		arrayDungeonEnemy->health = arrayDungeonEnemy[i].health - arrayCharacter[i].damage;
 		printf("You dealt %d damage to an enemy\n", arrayCharacter->damage); Sleep(500);
 		printf("Enemy HP %d\n", arrayDungeonEnemy->health); Sleep(500);
-		if (arrayDungeonEnemy[i].health < 1) {
-			arrayCharacter[i].gold += arrayDungeonEnemy[i].gold;
+		if (arrayDungeonEnemy->health < 1) {
+			arrayCharacter->gold += arrayDungeonEnemy[i].gold;
 			printf("You have defeated the enemy\n");
 			printf("You received %d gold\n", arrayCharacter[i].gold);
 			break;
@@ -181,8 +181,7 @@ void BattleWithDungeonEnemy(Character arrayCharacter[1], DungeonEnemy arrayDunge
 	}
 }
 
-void Battle(Character arrayCharacter[1], Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
-	int IndexEnemy = 3;
+void Battle(int IndexEnemy, Character arrayCharacter[1], Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
 	switch (IndexEnemy) {
 	case(1):
 		BattleWithEnemy(arrayCharacter, arrayEnemy);
@@ -197,8 +196,7 @@ void Battle(Character arrayCharacter[1], Enemy arrayEnemy[1], Boss arrayBoss[1],
 	}
 }
 
-void CharacterHealing(Character arrayCharacter[1], Healing arrayHealing[1]) {
-	int IndexHealing = 1;
+void CharacterHealing(int IndexHealing, Character arrayCharacter[1], Healing arrayHealing[1]) {
 	switch (IndexHealing) {
 	case 1:
 		for (int i = 0; i < 1; i++) {
@@ -217,8 +215,7 @@ void CharacterHealing(Character arrayCharacter[1], Healing arrayHealing[1]) {
 	}
 }
 
-void IncreaseDifficulty(Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
-	int NumberOfSteps = 100;
+void IncreaseDifficulty(int NumberOfSteps, Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
 	if (NumberOfSteps == 100) {
 		printf("Difficulty has been increased\n");
 		for (int i = 0; i < 1; i++) {
