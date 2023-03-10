@@ -193,10 +193,10 @@ void enemy_activation() {
 void inventory(int viewingInv) {
 	if (viewingInv == 1) hero->health += 10; //Apple
 	if (viewingInv == 2) hero->health += 25; //Healing Potion
-	if (viewingInv == 3) hero->damage = 12;  //Iron Sword
-	if (viewingInv == 4) hero->damage = 25;  //Steel Sword
-	if (viewingInv == 5) hero->health += 28; // Iron Armor
-	if (viewingInv == 6) hero->health += 45; // Steel Armor;
+	if (viewingInv == 3) hero->damage = 30;  //Iron Sword
+	if (viewingInv == 4) hero->damage = 70;  //Steel Sword
+	if (viewingInv == 5) hero->health += 80; // Iron Armor
+	if (viewingInv == 6) hero->health += 200; // Steel Armor;
 }
 
 void characterMoves() {
