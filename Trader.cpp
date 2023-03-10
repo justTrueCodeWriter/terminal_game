@@ -26,7 +26,7 @@ void TradingWindow(Character arrayCharacter[1])
 	printf("Welcome to my store!\n1)Buy an item\n2)Sell an item\n3)Dice Game\n4)End the dialog\n");
 	do
 		scanf_s("%d", &Choice);
-	while (Choice < 1 or Choice>3);
+	while (Choice < 1 or Choice>4);
 	if (Choice == 1)
 	{
 
@@ -120,5 +120,9 @@ void TradingWindow(Character arrayCharacter[1])
 		if (TraderDice > CharacterDice) { printf("I won. Ahahaha\n"); }
 		if (CharacterDice > TraderDice) { printf("You won...\n"); }
 		if (CharacterDice == TraderDice) { printf("A draw, interesting\n"); }
+	}
+
+	if (Choice == 4) {
+		printf("See you next time!\n");
 	}
 }
