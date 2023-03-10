@@ -93,7 +93,7 @@ void TradingWindow(Character arrayCharacter[1])
 				ks = pow(10, k);
 				inv = arrayCharacter[0].inventory % ks;
 				viewingInv = (arrayCharacter[0].inventory / ks) % 10;
-				arrayCharacter[0].inventory / (ks * 10) * ks + inv;
+				arrayCharacter[0].inventory = arrayCharacter[0].inventory / (ks * 10) * ks + inv;
 				if (viewingInv == 1) arrayCharacter[0].gold = arrayCharacter[0].gold+5;
 				if (viewingInv == 2) arrayCharacter[0].gold = arrayCharacter[0].gold + 10;
 				if (viewingInv == 3) arrayCharacter[0].gold = arrayCharacter[0].gold + 30;

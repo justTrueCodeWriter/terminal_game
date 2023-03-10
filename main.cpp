@@ -17,7 +17,7 @@ const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
 
 int map[y][x];
 bool game = true;
-int difficultyWaveCount=1;
+int difficultyWaveCount = 1;
 
 Character hero[1];
 Healing heal[1];
@@ -29,9 +29,10 @@ Boss arrayBoss[1];
 Healing arrayHealing[1];
 
 void Menu();
-void draw_map(); 
-void characterMoves(); 
+void draw_map();
+void characterMoves();
 void GetMap();
+void ViewInventoryOnTheButton();
 void SaveFile();
 void BinaryFileOutput();
 void InteractionWithTheChest();
@@ -47,6 +48,7 @@ int main() {
 	GetMap();
 	EnemyStats(villian);
 	BossStats(arrayBoss);
+	hero[0].inventory = 1;
 	DungeonEnemyStats(arrayDungeonEnemy);
 	do {
 		draw_map();
@@ -98,7 +100,7 @@ void draw_map() {
 			else if (map[hero->yCharacter][hero->xCharacter] == '$') {
 				TradingWindow(hero);
 				hero->yCharacter = hero->yCharacter - 2;
-					
+
 			}
 			printf("%c", map[i][j]);
 			if (isCharacterMove == 1)
@@ -107,7 +109,7 @@ void draw_map() {
 	}
 	printf("\nHealth: %d | Damage: %d", hero->health, hero->damage);
 	printf("\nGold: %d | Steps: %d", hero->gold, hero->steps);
-	printf("\nDifficulty Wave: %d", difficultyWaveCount-1);
+	printf("\nDifficulty Wave: %d", difficultyWaveCount - 1);
 }
 
 void enemy_activation() {
@@ -123,9 +125,9 @@ void enemy_activation() {
 		map[hero->yCharacter][hero->xCharacter] == 'B')
 		IndexEnemy = 2;
 	else if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'D' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'D' ||
-		map[hero->yCharacter][(hero->xCharacter) + 1] == 'D' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'D' || map[hero->yCharacter][hero->xCharacter] == 'D') IndexEnemy = 3; 
+		map[hero->yCharacter][(hero->xCharacter) + 1] == 'D' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'D' || map[hero->yCharacter][hero->xCharacter] == 'D') IndexEnemy = 3;
 	printf("\n");
-	
+
 	death = Battle(IndexEnemy, hero, villian, arrayBoss, arrayDungeonEnemy);
 
 	if (map[(hero->yCharacter) - 1][hero->xCharacter] == death || map[hero->yCharacter][(hero->xCharacter) - 1] == death ||
@@ -149,8 +151,20 @@ void enemy_activation() {
 	}
 
 }
+void inventory(int viewingInv) {
+	if (viewingInv == 1) hero[0].health += 10; //Apple
+	if (viewingInv == 2) hero[0].health += 25; //Healing Potion
+	if (viewingInv == 3) hero[0].damage = 12;  //Iron Sword
+	if (viewingInv == 4) hero[0].damage = 25;  //Steel Sword
+	if (viewingInv == 5) hero[0].health += 28; // Iron Armor
+	if (viewingInv == 6) hero[0].health += 45; // Steel Armor;
+}
 
 void characterMoves() {
+	int viewingInv = 0, inv;
+	inv = hero[0].inventory;
+	if (inv < 10) inv = inv * 10;
+	if (inv < 100) inv = inv * 10;
 	switch (_getch()) {
 	case 'z':
 		SaveFile();
@@ -178,15 +192,47 @@ void characterMoves() {
 			hero->yCharacter++;
 		hero->steps++;
 		break;
+	case '1':
+		viewingInv = inv / 100;
+		hero[0].inventory = hero[0].inventory % 100; if (hero[0].inventory == 1) hero[0].inventory = 0; inventory(viewingInv);
+		break;
+	case '2':
+		viewingInv = (inv / 10) % 10;
+		hero[0].inventory = hero[0].inventory % 10 + hero[0].inventory / 100 * 10; inventory(viewingInv); break;
+	case '3':
+		viewingInv = inv % 10;
+		hero[0].inventory = hero[0].inventory / 10; inventory(viewingInv); break;
+	case 'v':
+		ViewInventoryOnTheButton(); break;
 	}
 }
+void ViewInventoryOnTheButton()
+{
+	system("cls");
+	printf("Your inventory:\n");
+	int viewingInv, inv = hero[0].inventory;
+	for (int i = 1; i < 3; i++)
+	{
+		viewingInv = inv % 10;
+		inv = inv / 10;
+		if (viewingInv == 1) printf("%d)Apple\n", i);
+		if (viewingInv == 2) printf("%d)Healing Potion\n", i);
+		if (viewingInv == 3) printf("%d)Iron Sword\n", i);
+		if (viewingInv == 4) printf("%d)Steel Sword\n", i);
+		if (viewingInv == 5) printf("%d)Iron Armor\n", i);
+		if (viewingInv == 6) printf("%d)Steel Armor\n", i);
+		if (viewingInv == 0) break;
+	}
+	_getch();
+}
+
 
 
 void SaveFile() {
 	FILE* printBinary = NULL;
 	if (fopen_s(&printBinary, "save.bin", "wb") != NULL) {
 		printf("\nError opening file");
-			exit(1);
+		exit(1);
 	}
 	fwrite(&hero->health, sizeof(int), 1, printBinary);
 	fwrite(&hero->damage, sizeof(int), 1, printBinary);
@@ -254,7 +300,7 @@ void Menu() {
 
 void wasted() {
 	system("cls");
-		
+
 	FILE* wasted;
 
 	if (fopen_s(&wasted, "wasted.txt", "r") != 0) {
@@ -276,7 +322,7 @@ void wasted() {
 
 int stopping_objects() {
 
-	char stoppingObjects[] = {'Ы', 'E', 'B', 'D', '|'};
+	char stoppingObjects[] = { 'Ы', 'E', 'B', 'D', '|' };
 
 	for (int i = 0; i < (sizeof(stoppingObjects) / sizeof(char)); i++) {
 		if (map[(hero->yCharacter) - 1][hero->xCharacter] == stoppingObjects[i]) {
@@ -295,8 +341,8 @@ int stopping_objects() {
 			printf("4");
 			return 1;
 		}
-		else 
+		else
 			return 0;
 	}
-		
+
 }
