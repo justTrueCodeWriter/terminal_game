@@ -91,29 +91,29 @@ void CharacterUpgradeArmor(Character arrayCharacter[1], Armor arrayArmor[1]) {
 }
 
 void BattleWithEnemy(Character arrayCharacter[1], Enemy arrayEnemy[1]) {
-	for (int i = 0; i < 1; i++) {
-		arrayEnemy[i].health = arrayEnemy[i].health - arrayCharacter[i].damage;
+	while(arrayCharacter->health > 0 or arrayEnemy->health > 0) {
+		arrayEnemy->health = arrayEnemy->health - arrayCharacter->damage;
 		printf("You dealt %d damage to an enemy\n", arrayCharacter->damage); Sleep(500);
 		printf("Enemy HP %d\n", arrayEnemy->health); Sleep(500);
-		if (arrayEnemy[i].health < 1) {
-			arrayCharacter[i].gold += arrayEnemy[i].gold;
+		if (arrayEnemy->health < 1) {
+			arrayCharacter->gold += arrayEnemy->gold;
 			printf("You have defeated the enemy\n");
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
-		arrayCharacter[i].health = arrayCharacter[i].health - arrayEnemy[i].damage;
+		arrayCharacter->health = arrayCharacter->health - arrayEnemy->damage;
 		printf("You have been damaged by %d\n", arrayEnemy->damage); Sleep(500);
 		printf("Your HP is %d\n", arrayCharacter->health); Sleep(500);
-		if (arrayEnemy[i].health < 1) {
-			arrayCharacter[i].gold += arrayEnemy[i].gold;
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+		if (arrayEnemy->health < 1) {
+			arrayCharacter->gold += arrayEnemy->gold;
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
@@ -122,29 +122,29 @@ void BattleWithEnemy(Character arrayCharacter[1], Enemy arrayEnemy[1]) {
 }
 
 void BattleWithBoss(Character arrayCharacter[1], Boss arrayBoss[1]) {
-	for (int i = 0; i < 1; i++) {
-		arrayBoss[i].health = arrayBoss[i].health - arrayCharacter[i].damage;
+	while (arrayCharacter->health > 0 or arrayBoss->health > 0) {
+		arrayBoss->health = arrayBoss->health - arrayCharacter->damage;
 		printf("You dealt %d damage to an enemy\n", arrayCharacter->damage); Sleep(500);
 		printf("Enemy HP %d\n", arrayBoss->health); Sleep(500);
-		if (arrayBoss[i].health < 1) {
-			arrayCharacter[i].gold += arrayBoss[i].gold;
+		if (arrayBoss->health < 1) {
+			arrayCharacter->gold += arrayBoss->gold;
 			printf("You have defeated the enemy\n");
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
-		arrayCharacter[i].health = arrayCharacter[i].health - arrayBoss[i].damage;
+		arrayCharacter->health = arrayCharacter->health - arrayBoss->damage;
 		printf("You have been damaged by %d\n", arrayBoss->damage); Sleep(500);
 		printf("Your HP is %d\n", arrayCharacter->health); Sleep(500);
-		if (arrayBoss[i].health < 1) {
-			arrayCharacter[i].gold += arrayBoss[i].gold;
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+		if (arrayBoss->health < 1) {
+			arrayCharacter->gold += arrayBoss->gold;
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
@@ -153,28 +153,28 @@ void BattleWithBoss(Character arrayCharacter[1], Boss arrayBoss[1]) {
 
 void BattleWithDungeonEnemy(Character arrayCharacter[1], DungeonEnemy arrayDungeonEnemy[1]) {
 	while (arrayCharacter->health > 0 || arrayDungeonEnemy->health > 0) {
-		arrayDungeonEnemy->health = arrayDungeonEnemy[i].health - arrayCharacter[i].damage;
+		arrayDungeonEnemy->health = arrayDungeonEnemy->health - arrayCharacter->damage;
 		printf("You dealt %d damage to an enemy\n", arrayCharacter->damage); Sleep(500);
 		printf("Enemy HP %d\n", arrayDungeonEnemy->health); Sleep(500);
 		if (arrayDungeonEnemy->health < 1) {
-			arrayCharacter->gold += arrayDungeonEnemy[i].gold;
+			arrayCharacter->gold += arrayDungeonEnemy->gold;
 			printf("You have defeated the enemy\n");
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
-		arrayCharacter[i].health = arrayCharacter[i].health - arrayDungeonEnemy[i].damage;
+		arrayCharacter->health = arrayCharacter->health - arrayDungeonEnemy->damage;
 		printf("You have been damaged by %d\n", arrayDungeonEnemy->damage); Sleep(500);
 		printf("Your HP is %d\n", arrayCharacter->health); Sleep(500);
-		if (arrayDungeonEnemy[i].health < 1) {
-			arrayCharacter[i].gold += arrayDungeonEnemy[i].gold;
-			printf("You received %d gold\n", arrayCharacter[i].gold);
+		if (arrayDungeonEnemy->health < 1) {
+			arrayCharacter->gold += arrayDungeonEnemy->gold;
+			printf("You received %d gold\n", arrayCharacter->gold);
 			break;
 		}
-		if (arrayCharacter[i].health < 1) {
+		if (arrayCharacter->health < 1) {
 			printf("Your character is dead\n");
 			break;
 		}
