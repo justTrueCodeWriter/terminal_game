@@ -68,7 +68,7 @@ void TradingWindow(Character arrayCharacter[1])
 		int inv = arrayCharacter[0].inventory;
 		int viewingInv;
 		printf("SELL\n");
-		for (int i = 1; i < 3; i++)
+		for (int i = 1; i < 4; i++)
 		{
 			viewingInv = inv % 10;
 			inv = inv / 10;
@@ -85,7 +85,7 @@ void TradingWindow(Character arrayCharacter[1])
 		printf("What do you want to sell?\n");
 		scanf_s("%d", &s);
 			k = s - k;
-			ks = pow(10, k);
+			ks = pow(10, abs(k));
 			inv = arrayCharacter[0].inventory % ks;
 			viewingInv = (arrayCharacter[0].inventory / ks) % 10;
 			arrayCharacter[0].inventory = arrayCharacter[0].inventory / (ks * 10) * ks + inv;

@@ -254,24 +254,36 @@ void characterMoves() {
 }
 void ViewInventoryOnTheButton()
 {
+	int error=0;
 	system("cls");
 	printf("Your inventory:\n");
-	int viewingInv,k=1, inv = hero[0].inventory;
-	for (int i = 1; i < 3; i++)
+	if (hero[0].inventory == 0)
 	{
-		viewingInv = inv % 10;
-		if (viewingInv == 0) {viewingInv = inv / 10; k = 0;}
-		inv = inv / 10;
-		if (viewingInv == 1) printf("%d)Apple\n", i);
-		if (viewingInv == 2) printf("%d)Healing Potion\n", i);
-		if (viewingInv == 3) printf("%d)Iron Sword\n", i);
-		if (viewingInv == 4) printf("%d)Steel Sword\n", i);
-		if (viewingInv == 5) printf("%d)Iron Armor\n", i);
-		if (viewingInv == 6) printf("%d)Steel Armor\n", i);
-		if (viewingInv == 0) break;
-		if (k == 0) viewingInv = 0;
+		system("cls"); error=1;
 	}
-	_getch();
+	int inv = hero[0].inventory;
+	int viewingInv;
+	if (error != 1)
+	{
+		for (int i = 1; i < 4; i++)
+		{
+			if (inv % 10 == 0) { inv = inv / 10; if (inv % 10 == 0) inv = inv / 10; viewingInv = inv; }
+			else viewingInv = inv % 10;
+			inv = inv / 10;
+
+			if (viewingInv == 1) printf("%d)Apple 5 gold\n", i);
+			if (viewingInv == 2) printf("%d)Healing Potion - 10 gold\n", i);
+			if (viewingInv == 3) printf("%d)Iron Sword - 30 gold\n", i);
+			if (viewingInv == 4) printf("%d)Steel Sword - 60 gold\n", i);
+			if (viewingInv == 5) printf("%d)Iron Armor - 30 gold\n", i);
+			if (viewingInv == 6) printf("%d)Steel Armor - 60 gold\n", i);
+			if (viewingInv == 0) break;
+
+		}
+		_getch();
+	}
+	else printf("Your inventory is empty");
+	error = 0;
 }
 
 
