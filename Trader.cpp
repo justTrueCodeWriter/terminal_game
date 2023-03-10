@@ -31,10 +31,10 @@ void TradingWindow(Character arrayCharacter[1])
 	case'1':
 	{
 		if (arrayCharacter[0].inventory > 99) { printf("Your inventory is full");break; }
-		printf("Here are my products:\n1)Apple - 5 gold\n2)Healing Potion - 10 gold\n3)Iron Sword - 30 gold\n4)Steel Sword - 60 gold\n5)Iron Armor - 30 gold\n6)Steel Armor - 60 gold\nChoose a product\n");
+		printf("Here are my products:\n1)Apple - 5 gold\n2)Healing Potion - 10 gold\n3)Iron Sword - 30 gold\n4)Steel Sword - 60 gold\n5)Iron Armor - 30 gold\n6)Steel Armor - 60 gold\n7)Exit\n");
 		do
 			scanf_s("%d", &Choice);
-		while (Choice < 1 or Choice>6);
+		while (Choice < 1 or Choice>7);
 
 
 		//List of products
@@ -58,6 +58,7 @@ void TradingWindow(Character arrayCharacter[1])
 		case 6: printf("Steel Armor - 60 gold\n"); Sale = 60; Trading(arrayCharacter, Sale);  //armor_3
 			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 6;
 			else Full(); break;
+		case 7: system("cls"); break;
 		} break;
 	}
 
@@ -104,13 +105,24 @@ void TradingWindow(Character arrayCharacter[1])
 	case'3':
 	{
 		printf("Well, buddy, let's play. I think you know the rules. We roll the dice, the one with the most wins\n");
-		Sleep(1000);
+		printf("Well, will you place a bet?\n");
+		printf("1)No. I won't bet\n2)5 Gold\n3)10 Gold\n4)20 Gold\n");
+		int Bet=0;
+		switch (_getch()) 
+		{
+		case '1': printf("Eh...\n");
+		case '2': if (arrayCharacter[0].gold >= 5) Bet = 5; else printf("You don't have enough money to bet\n"); break;
+		case '3': if (arrayCharacter[0].gold >= 10) Bet = 10; 
+				else printf("You don't have enough money to bet"); 
+			break;
+		case '4': if (arrayCharacter[0].gold >= 20) Bet = 20; else printf("You don't have enough money to bet"); break;
+		}
 		srand((unsigned)time(0));
 		int TraderDice = rand() % 6 + 1, CharacterDice = rand() % 6 + 1;
 		printf("You:%d\nTrader:%d\n", CharacterDice, TraderDice);
-		if (TraderDice > CharacterDice) { printf("I won. Ahahaha\n"); }
-		if (CharacterDice > TraderDice) { printf("You won...\n"); }
-		if (CharacterDice == TraderDice) { printf("A draw, interesting\n"); }
+		if (TraderDice > CharacterDice) { printf("I won. Ahahaha\n"); arrayCharacter[0].gold=arrayCharacter[0].gold - Bet; }
+		if (CharacterDice > TraderDice) { printf("You won...\n"); arrayCharacter[0].gold=arrayCharacter[0].gold + Bet;}
+		if (CharacterDice == TraderDice) { printf("A draw, interesting\n");}
 		_getch();
 	}
 

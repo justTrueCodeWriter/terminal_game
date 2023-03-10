@@ -240,8 +240,7 @@ void characterMoves() {
 	case '1':
 		hero[0].inventory = 
 		viewingInv = Onenumb;
-		hero[0].inventory = Twnumb*10+ Thnumb; inventory(viewingInv);
-		break;
+		hero[0].inventory = Twnumb*10+ Thnumb; inventory(viewingInv); break;
 	case '2':
 		viewingInv = Twnumb;
 		hero[0].inventory = Onenumb * 10 + Thnumb; inventory(viewingInv); break;
