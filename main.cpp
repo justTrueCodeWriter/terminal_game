@@ -4,6 +4,11 @@
 #include <conio.h>
 #include <math.h>
 
+#define UP 72
+#define DOWN 80
+#define LEFT 75
+#define RIGHT 77
+
 #include "character_parameters.h"
 #include "fight.h"
 
@@ -19,6 +24,8 @@ Enemy villian[1];
 DungeonEnemy arrayDungeonEnemy[1];
 Boss arrayBoss[1];
 
+Healing arrayHealing[1];
+
 void Menu();
 void draw_map(); 
 void characterMoves(); 
@@ -32,19 +39,23 @@ int main() {
 	srand(NULL);
 	Menu();
 	GetMap();
+	EnemyStats(villian);
+	BossStats(arrayBoss);
+	DungeonEnemyStats(arrayDungeonEnemy);
 	do {
 		draw_map();
 		printf("\n");
 		enemy_activation();
 		characterMoves();
 		system("cls");
+		IncreaseDifficulty(hero->steps, villian, arrayBoss, arrayDungeonEnemy);
 	} while (game == true);
 }
 
 void GetMap() {
 	FILE* m;
 
-	if (fopen_s(&m, "map_2.txt", "rt") != 0) {
+	if (fopen_s(&m, "map_4.txt", "rt") != 0) {
 		printf("File couldn't open\n");
 		exit(1);
 	}
@@ -67,10 +78,16 @@ void draw_map() {
 				map[i][j] = '@';
 				isCharacterMove = 1;
 			}
-			if (i == chest->yChest and j == chest->xChest) {
+			else if (i == chest->yChest and j == chest->xChest) {
 				map[i][j] = 'T';
 			}
-			if (hero->xCharacter == chest->xChest and hero->yCharacter == chest->yChest) {
+
+			else if (map[hero->yCharacter][hero->xCharacter] == 'A') {
+				map[hero->yCharacter][hero->xCharacter] = ' ';
+				CharacterHealing(1, hero, arrayHealing);
+			}
+
+			else if (hero->xCharacter == chest->xChest and hero->yCharacter == chest->yChest) {
 				InteractionWithTheChest();
 			}
 			printf("%c", map[i][j]);
@@ -86,6 +103,7 @@ void draw_map() {
 
 void enemy_activation() {
 	int IndexEnemy = 0;
+	char death;
 
 	if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'E' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'E' ||
 		map[hero->yCharacter][(hero->xCharacter) + 1] == 'E' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'E' ||
@@ -101,11 +119,18 @@ void enemy_activation() {
 		IndexEnemy = 3;
 
 	printf("\n");
-	EnemyStats(villian);
-	BossStats(arrayBoss);
-	DungeonEnemyStats(arrayDungeonEnemy);
+	
+	death = Battle(IndexEnemy, hero, villian, arrayBoss, arrayDungeonEnemy);
 
-	Battle(IndexEnemy, hero, villian, arrayBoss, arrayDungeonEnemy);
+	if (map[(hero->yCharacter) - 1][hero->xCharacter] == death || map[hero->yCharacter][(hero->xCharacter) - 1] == death ||
+		map[hero->yCharacter][(hero->xCharacter) + 1] == death || map[(hero->yCharacter) + 1][hero->xCharacter] == death ||
+		map[hero->yCharacter][hero->xCharacter] == death) {
+		map[(hero->yCharacter) - 1][hero->xCharacter] = ' ';
+		map[hero->yCharacter][(hero->xCharacter) - 1] = ' ';
+		map[hero->yCharacter][(hero->xCharacter) + 1] = ' '; 
+		map[(hero->yCharacter) + 1][hero->xCharacter] = ' ';
+	}
+
 }
 
 void characterMoves() {
