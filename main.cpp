@@ -11,6 +11,7 @@
 
 #include "character_parameters.h"
 #include "fight.h"
+#include "trade.h"
 
 const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
 
@@ -35,6 +36,8 @@ void SaveFile();
 void BinaryFileOutput();
 void InteractionWithTheChest();
 void enemy_activation();
+
+int stopping_objects();
 
 void wasted();
 
@@ -90,6 +93,12 @@ void draw_map() {
 			else if (map[hero->yCharacter][hero->xCharacter] == 'T') {
 				map[hero->yCharacter][hero->xCharacter] = ' ';
 				InteractionWithTheChest();
+			}
+
+			else if (map[hero->yCharacter][hero->xCharacter] == '$') {
+				TradingWindow(hero);
+				hero->yCharacter = hero->yCharacter - 2;
+					
 			}
 			printf("%c", map[i][j]);
 			if (isCharacterMove == 1)
@@ -150,22 +159,22 @@ void characterMoves() {
 		game = false;
 		break;
 	case 'w':
-		if (map[(hero->yCharacter) - 1][hero->xCharacter] != 'E' && map[(hero->yCharacter) - 1][hero->xCharacter] != 219)
+		if (stopping_objects() != 1)
 			hero->yCharacter--;
 		hero->steps++;
 		break;
 	case 'a':
-		if (map[hero->yCharacter][(hero->xCharacter) - 1] != 'E' && map[hero->yCharacter][(hero->xCharacter) - 1] != 219)
+		if (stopping_objects() != 1)
 			hero->xCharacter--;
 		hero->steps++;
 		break;
 	case 'd':
-		if (map[hero->yCharacter][(hero->xCharacter)+1]!='E' && map[hero->yCharacter][(hero->xCharacter) + 1] != 219)
+		if (stopping_objects() != 1)
 			hero->xCharacter++;
 		hero->steps++;
 		break;
 	case 's':
-		if (map[(hero->yCharacter)+1][hero->xCharacter]!='E' && map[(hero->yCharacter) + 1][hero->xCharacter] != 219)
+		if (stopping_objects() != 1)
 			hero->yCharacter++;
 		hero->steps++;
 		break;
@@ -263,4 +272,31 @@ void wasted() {
 			printf("%c", text[i][j]);
 	Sleep(3000);
 	exit(1);
+}
+
+int stopping_objects() {
+
+	char stoppingObjects[] = {'Ы', 'E', 'B', 'D', '|'};
+
+	for (int i = 0; i < (sizeof(stoppingObjects) / sizeof(char)); i++) {
+		if (map[(hero->yCharacter) - 1][hero->xCharacter] == stoppingObjects[i]) {
+			printf("1");
+			return 1;
+		}
+		else if (map[(hero->yCharacter) + 1][hero->xCharacter] == stoppingObjects[i]) {
+			printf("2");
+			return 1;
+		}
+		else if (map[hero->yCharacter][(hero->xCharacter) - 1] == stoppingObjects[i]) {
+			printf("3");
+			return 1;
+		}
+		else if (map[hero->yCharacter][(hero->xCharacter) + 1] == stoppingObjects[i]) {
+			printf("4");
+			return 1;
+		}
+		else 
+			return 0;
+	}
+		
 }

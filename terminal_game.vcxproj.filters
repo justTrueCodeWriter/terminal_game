@@ -41,6 +41,9 @@
     <ClInclude Include="fight.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="trade.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="map.txt">
