@@ -46,7 +46,6 @@ int main() {
 	GetMap();
 	EnemyStats(villian);
 	BossStats(arrayBoss);
-	hero[0].inventory = 1;
 	DungeonEnemyStats(arrayDungeonEnemy);
 	do {
 		draw_map();
@@ -159,10 +158,13 @@ void inventory(int viewingInv) {
 }
 
 void characterMoves() {
-	int viewingInv = 0, inv;
+	int viewingInv = 0, inv, Onenumb=0, Twnumb = 0, Thnumb = 0;
 	inv = hero[0].inventory;
-	if (inv < 10) inv = inv * 10;
-	if (inv < 100) inv = inv * 10;
+	if (inv < 10) { inv = inv * 10;  }
+	if (inv < 100) { inv = inv * 10; }
+	Onenumb = inv / 100;
+	Twnumb = inv / 10 % 10;
+	Thnumb = inv % 10;
 	switch (_getch()) {
 	case 'z':
 		SaveFile();
@@ -207,15 +209,16 @@ void characterMoves() {
 		hero->steps++;
 		break;
 	case '1':
-		viewingInv = inv / 100;
-		hero[0].inventory = hero[0].inventory % 100; if (hero[0].inventory == 1) hero[0].inventory = 0; inventory(viewingInv);
+		hero[0].inventory = 
+		viewingInv = Onenumb;
+		hero[0].inventory = Twnumb*10+ Thnumb; inventory(viewingInv);
 		break;
 	case '2':
-		viewingInv = (inv / 10) % 10;
-		hero[0].inventory = hero[0].inventory % 10 + hero[0].inventory / 100 * 10; inventory(viewingInv); break;
+		viewingInv = Twnumb;
+		hero[0].inventory = Onenumb * 10 + Thnumb; inventory(viewingInv); break;
 	case '3':
-		viewingInv = inv % 10;
-		hero[0].inventory = hero[0].inventory / 10; inventory(viewingInv); break;
+		viewingInv = Thnumb;
+		hero[0].inventory = Onenumb * 10 + Twnumb; inventory(viewingInv); break;
 	case 'v':
 		ViewInventoryOnTheButton(); break;
 	}
@@ -224,10 +227,11 @@ void ViewInventoryOnTheButton()
 {
 	system("cls");
 	printf("Your inventory:\n");
-	int viewingInv, inv = hero[0].inventory;
+	int viewingInv,k=1, inv = hero[0].inventory;
 	for (int i = 1; i < 3; i++)
 	{
 		viewingInv = inv % 10;
+		if (viewingInv == 0) {viewingInv = inv / 10; k = 0;}
 		inv = inv / 10;
 		if (viewingInv == 1) printf("%d)Apple\n", i);
 		if (viewingInv == 2) printf("%d)Healing Potion\n", i);
@@ -236,6 +240,7 @@ void ViewInventoryOnTheButton()
 		if (viewingInv == 5) printf("%d)Iron Armor\n", i);
 		if (viewingInv == 6) printf("%d)Steel Armor\n", i);
 		if (viewingInv == 0) break;
+		if (k == 0) viewingInv = 0;
 	}
 	_getch();
 }
