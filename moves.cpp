@@ -16,6 +16,7 @@ Healing heal[1];
 Treasure chest[1];
 Enemy villian[1];
 
+void Menu();
 void draw_map(); 
 void characterMoves(); 
 void GetMap();
@@ -27,6 +28,7 @@ void fight();
 
 int main() {
 	srand(NULL);
+	Menu();
 	GetMap();
 	do {
 		draw_map();
@@ -117,7 +119,6 @@ void characterMoves() {
 	case 'z':
 		SaveFile();
 		system("cls");
-		BinaryFileOutput();
 		system("\npause");
 		game = false;
 		break;
@@ -161,15 +162,13 @@ void SaveFile() {
 void BinaryFileOutput() {
 	FILE* output = NULL;
 	if (fopen_s(&output, "save.bin", "rb") != NULL) {
-		printf("\nError opening file");
+		printf("\nNo saves\n");
 		exit(1);
 	}
 	fread(&hero->health, sizeof(int), 1, output);
 	fread(&hero->damage, sizeof(int), 1, output);
 	fread(&hero->gold, sizeof(int), 1, output);
 	fread(&hero->steps, sizeof(int), 1, output);
-
-	printf("%d %d %d %d\n", hero->health, hero->damage, hero->gold, hero->steps);
 	fclose(output);
 }
 
@@ -183,10 +182,35 @@ void InteractionWithTheChest() {
 	switch (switcher) {
 	case 1:
 		hero->gold += chest->gold;
+		printf("%d gold received\n", chest->gold); Sleep(520);
+		system("cls");
 		chest->xChest = -1; chest->yChest = -1;
 		break;
 	case 2:
 		hero->xCharacter = chest->xChest + 1;
 		break;
+	}
+}
+
+void Menu() {
+	int selection;
+	printf("\tRoguelike Game\n\n");
+	printf("\t1: New game\n");
+	printf("\t2: Continue game\n");
+	printf("\t3: Exit game\n");
+	do {
+		printf("Choose to start the game or continue or exit\n");
+		printf("Please note that if you start the game again, the data will be overwritten\n");
+		scanf_s("%d", &selection);
+	} while (selection < 1 or selection > 4);
+	system("cls");
+	if (selection == 1) {
+		Character hero[1];
+	}
+	if (selection == 2) {
+		BinaryFileOutput();
+	}
+	if (selection == 3) {
+		exit(1);
 	}
 }
