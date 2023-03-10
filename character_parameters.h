@@ -10,7 +10,6 @@ struct Character {
 
 struct Enemy {
 	int health, damage, gold;
-	int xEnemy = SCREEN_WIDTH / 4 + 5, yEnemy = SCREEN_HEIGHT / 4;
 };
 
 struct Boss {
@@ -47,6 +46,5 @@ struct Armor {
 };
 
 struct Treasure {
-	int xChest = 14, yChest = 25;
-	int gold = 150;
+	int gold = 350;
 };

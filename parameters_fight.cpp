@@ -22,7 +22,7 @@ void EnemyStats(Enemy arrayEnemy[1]) {
 
 void BossStats(Boss arrayBoss[1]) {
 	for (int i = 0; i < 1; i++) {
-		arrayBoss[i].health = 70;
+		arrayBoss[i].health = 75;
 		arrayBoss[i].damage = 20;
 		arrayBoss[i].gold = 50;
 	}

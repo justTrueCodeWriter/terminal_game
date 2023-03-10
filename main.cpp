@@ -81,16 +81,14 @@ void draw_map() {
 				map[i][j] = '@';
 				isCharacterMove = 1;
 			}
-			else if (i == chest->yChest and j == chest->xChest) {
-				map[i][j] = 'T';
-			}
 
 			else if (map[hero->yCharacter][hero->xCharacter] == 'A') {
 				map[hero->yCharacter][hero->xCharacter] = ' ';
 				CharacterHealing(1, hero, arrayHealing);
 			}
 
-			else if (hero->xCharacter == chest->xChest and hero->yCharacter == chest->yChest) {
+			else if (map[hero->yCharacter][hero->xCharacter] == 'T') {
+				map[hero->yCharacter][hero->xCharacter] = ' ';
 				InteractionWithTheChest();
 			}
 			printf("%c", map[i][j]);
@@ -134,6 +132,9 @@ void enemy_activation() {
 
 		IncreaseDifficulty(hero->steps, difficultyWaveCount, villian, arrayBoss, arrayDungeonEnemy);
 	}
+	if (death == 'B')
+		map[(hero->yCharacter) + 3][(hero->xCharacter) + 3] = 'T';
+
 	else if (death == '@') {
 		wasted();
 	}
@@ -212,10 +213,9 @@ void InteractionWithTheChest() {
 		hero->gold += chest->gold;
 		printf("%d gold received\n", chest->gold); Sleep(520);
 		system("cls");
-		chest->xChest = -1; chest->yChest = -1;
 		break;
 	case 2:
-		hero->xCharacter = chest->xChest + 1;
+		hero->xCharacter = hero->xCharacter + 1;
 		break;
 	}
 }
