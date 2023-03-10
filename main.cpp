@@ -32,6 +32,7 @@ void Menu();
 void draw_map();
 void characterMoves();
 void GetMap();
+void getDungeonMap();
 void ViewInventoryOnTheButton();
 void SaveFile();
 void BinaryFileOutput();
@@ -73,6 +74,22 @@ void GetMap() {
 	fclose(m);
 }
 
+void getDungeonMap() {
+	FILE* m;
+
+	if (fopen_s(&m, "dungeon_map.txt", "rt") != 0) {
+		printf("File couldn't open\n");
+		exit(1);
+	}
+
+	for (int i = 0; i < y; i++) {
+		for (int j = 0; j < x; j++) {
+			fscanf_s(m, "%c", &map[i][j]);
+		}
+	}
+	fclose(m);
+}
+
 void draw_map() {
 
 	for (int i = 0; i < y; i++) {
@@ -98,6 +115,18 @@ void draw_map() {
 				TradingWindow(hero);
 				hero->yCharacter = hero->yCharacter - 2;
 
+			}
+
+			else if (map[hero->yCharacter][hero->xCharacter] == '&') {
+				hero->yCharacter = 11;
+				hero->xCharacter = 29;
+				getDungeonMap();
+			}
+
+			else if (map[hero->yCharacter][hero->xCharacter] == '*') {
+				hero->yCharacter = 31;
+				hero->xCharacter = 29;
+				GetMap();
 			}
 			printf("%c", map[i][j]);
 			if (isCharacterMove == 1)
