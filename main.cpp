@@ -12,12 +12,17 @@
 #include "character_parameters.h"
 #include "fight.h"
 #include "trade.h"
+#include "increase.h"
 
 const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
 
 int map[y][x];
 bool game = true;
 int difficultyWaveCount = 1;
+
+int enemyHealth = 10, enemyDamage = 3, enemyGold = 10;
+int bossHealth = 75, bossDamage = 20, bossGold = 50;
+int dungeonEnemyHealth = 12, dungeonEnemyDamage = 6, dungeonEnemyGold = 20;
 
 Character hero[1];
 Healing heal[1];
@@ -163,11 +168,19 @@ void enemy_activation() {
 		map[hero->yCharacter][(hero->xCharacter) - 1] = ' ';
 		map[hero->yCharacter][(hero->xCharacter) + 1] = ' ';
 		map[(hero->yCharacter) + 1][hero->xCharacter] = ' ';
-		EnemyStats(villian);
-		BossStats(arrayBoss);
-		DungeonEnemyStats(arrayDungeonEnemy);
 
-		IncreaseDifficulty(hero->steps, difficultyWaveCount, villian, arrayBoss, arrayDungeonEnemy);
+		villian->health = enemyHealth;
+		villian->damage = enemyDamage;
+		villian->gold = enemyGold;
+
+		arrayBoss->health = bossHealth;
+		arrayBoss->damage = bossDamage;
+		arrayBoss->gold = bossGold;
+
+		arrayDungeonEnemy->health = dungeonEnemyHealth;
+		arrayDungeonEnemy->damage = dungeonEnemyDamage;
+		arrayDungeonEnemy->gold = dungeonEnemyGold;
+
 	}
 	if (death == 'B')
 		map[(hero->yCharacter) + 3][(hero->xCharacter) + 3] = 'T';
@@ -178,17 +191,17 @@ void enemy_activation() {
 
 }
 void inventory(int viewingInv) {
-	if (viewingInv == 1) hero[0].health += 10; //Apple
-	if (viewingInv == 2) hero[0].health += 25; //Healing Potion
-	if (viewingInv == 3) hero[0].damage = 12;  //Iron Sword
-	if (viewingInv == 4) hero[0].damage = 25;  //Steel Sword
-	if (viewingInv == 5) hero[0].health += 28; // Iron Armor
-	if (viewingInv == 6) hero[0].health += 45; // Steel Armor;
+	if (viewingInv == 1) hero->health += 10; //Apple
+	if (viewingInv == 2) hero->health += 25; //Healing Potion
+	if (viewingInv == 3) hero->damage = 12;  //Iron Sword
+	if (viewingInv == 4) hero->damage = 25;  //Steel Sword
+	if (viewingInv == 5) hero->health += 28; // Iron Armor
+	if (viewingInv == 6) hero->health += 45; // Steel Armor;
 }
 
 void characterMoves() {
 	int viewingInv = 0, inv, Onenumb=0, Twnumb = 0, Thnumb = 0;
-	inv = hero[0].inventory;
+	inv = hero->inventory;
 	if (inv < 10) { inv = inv * 10;  }
 	if (inv < 100) { inv = inv * 10; }
 	Onenumb = inv / 100;
@@ -249,7 +262,11 @@ void characterMoves() {
 		hero[0].inventory = Onenumb * 10 + Twnumb; inventory(viewingInv); break;
 	case 'v':
 		ViewInventoryOnTheButton(); break;
+	case 'h':
+		hero->health += 100;
 	}
+
+
 }
 void ViewInventoryOnTheButton()
 {
@@ -378,3 +395,30 @@ void wasted() {
 	Sleep(3000);
 	exit(1);
 }
+
+void IncreaseDifficulty(int NumberOfSteps, int &difficultyWaveCount, Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
+	if (NumberOfSteps != 0 && NumberOfSteps % 100 == 0) {
+		printf("Difficulty has been increased\n");
+		Sleep(3000);
+		
+	for (int i = 0; i < 1; i++) {
+		enemyHealth = arrayEnemy[i].health * 1.5 * difficultyWaveCount;
+		enemyDamage  = arrayEnemy[i].damage* 1.5 * difficultyWaveCount;
+		enemyGold = arrayEnemy[i].gold * 1.5 * difficultyWaveCount;
+	}
+	for (int i = 0; i < 1; i++) {
+		bossHealth = arrayBoss[i].health * 1.5 * difficultyWaveCount;
+		bossDamage = arrayBoss[i].damage * 1.5 * difficultyWaveCount;
+		bossGold = arrayBoss[i].gold * 1.5 * difficultyWaveCount;
+	}
+	for (int i = 0; i < 1; i++) {
+		dungeonEnemyDamage = arrayDungeonEnemy[i].health * 1.5 * difficultyWaveCount;
+		dungeonEnemyDamage = arrayDungeonEnemy[i].damage * 1.5 * difficultyWaveCount;
+		dungeonEnemyDamage = arrayDungeonEnemy[i].gold * 1.5 * difficultyWaveCount;
+	}
+
+		difficultyWaveCount++;
+	}
+}
+
+

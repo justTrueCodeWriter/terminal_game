@@ -3,6 +3,7 @@
 #include <Windows.h>
 
 #include "character_parameters.h"
+#include "increase.h"
 
 void CharacterStats(Character arrayCharacter[1]) {
 	for (int i = 0; i < 1; i++) {
@@ -212,28 +213,10 @@ void CharacterHealing(int IndexHealing, Character arrayCharacter[1], Healing arr
 	}
 }
 
-void IncreaseDifficulty(int NumberOfSteps, int &difficultyWaveCount, Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
-	if (NumberOfSteps != 0 && NumberOfSteps % 100 == 0) {
-		printf("Difficulty has been increased\n");
-		Sleep(3000);
-		for (int i = 0; i < 1; i++) {
-			arrayEnemy[i].health *= 1.5*difficultyWaveCount;
-			arrayEnemy[i].damage *= 1.5*difficultyWaveCount;
-			arrayEnemy[i].gold *= 1.5*difficultyWaveCount;
-		}
-		for (int i = 0; i < 1; i++) {
-			arrayBoss[i].health *= 1.5*difficultyWaveCount;
-			arrayBoss[i].damage *= 1.5*difficultyWaveCount;
-			arrayBoss[i].gold *= 1.5*difficultyWaveCount;
-		}
-		for (int i = 0; i < 1; i++) {
-			arrayDungeonEnemy[i].health *= 1.5*difficultyWaveCount;
-			arrayDungeonEnemy[i].damage *= 1.5*difficultyWaveCount;
-			arrayDungeonEnemy[i].gold *= 1.5*difficultyWaveCount;
-		}
-		difficultyWaveCount++;
-	}
-}
+
+
+
+
 
 #if 0
 int main() {
