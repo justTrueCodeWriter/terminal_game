@@ -46,16 +46,16 @@ void TradingWindow(Character arrayCharacter[1])
 			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 2;
 			else Full(); break;
 		case 3: printf("Iron Sword - 30 gold\n"); Sale = 30; Trading(arrayCharacter, Sale); //wearon_2
-			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 4;
+			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 3;
 			else Full(); break; 
 		case 4: printf("Steel Sword - 60 gold\n"); Sale = 60; Trading(arrayCharacter, Sale); break; //wearon_3
-			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 5;
+			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 4;
 			else Full(); break;
 		case 5: printf("Iron Armor - 30 gold\n"); Sale = 30; Trading(arrayCharacter, Sale); break; //armor_2
-			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 6;
+			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 5;
 			else Full(); break;
 		case 6: printf("Steel Armor - 60 gold\n"); Sale = 60; Trading(arrayCharacter, Sale); break; //armor_3
-			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 7;
+			if (arrayCharacter[0].inventory < 100000000) arrayCharacter[0].inventory = arrayCharacter[0].inventory * 10 + 6;
 			else Full(); break;
 		}
 	};
