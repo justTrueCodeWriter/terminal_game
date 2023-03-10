@@ -59,6 +59,9 @@
     <Text Include="wasted.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="dungeon_map.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="save.bin">

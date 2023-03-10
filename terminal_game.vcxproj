@@ -140,6 +140,7 @@
     <ClInclude Include="trade.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="dungeon_map.txt" />
     <Text Include="map.txt" />
     <Text Include="map_2.txt" />
     <Text Include="map_3.txt" />
