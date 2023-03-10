@@ -143,6 +143,7 @@
     <Text Include="map_2.txt" />
     <Text Include="map_3.txt" />
     <Text Include="map_4.txt" />
+    <Text Include="wasted.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="save.bin" />

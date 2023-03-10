@@ -53,6 +53,9 @@
     <Text Include="map_4.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="wasted.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="save.bin">

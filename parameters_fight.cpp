@@ -14,16 +14,16 @@ void CharacterStats(Character arrayCharacter[1]) {
 
 void EnemyStats(Enemy arrayEnemy[1]) {
 	for (int i = 0; i < 1; i++) {
-		arrayEnemy[i].health = 5;
-		arrayEnemy[i].damage = 2;
+		arrayEnemy[i].health = 7;
+		arrayEnemy[i].damage = 3;
 		arrayEnemy[i].gold = 10;
 	}
 }
 
 void BossStats(Boss arrayBoss[1]) {
 	for (int i = 0; i < 1; i++) {
-		arrayBoss[i].health = 30;
-		arrayBoss[i].damage = 10;
+		arrayBoss[i].health = 70;
+		arrayBoss[i].damage = 20;
 		arrayBoss[i].gold = 50;
 	}
 }
@@ -212,25 +212,26 @@ void CharacterHealing(int IndexHealing, Character arrayCharacter[1], Healing arr
 	}
 }
 
-void IncreaseDifficulty(int NumberOfSteps, Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
+void IncreaseDifficulty(int NumberOfSteps, int &difficultyWaveCount, Enemy arrayEnemy[1], Boss arrayBoss[1], DungeonEnemy arrayDungeonEnemy[1]) {
 	if (NumberOfSteps != 0 && NumberOfSteps % 100 == 0) {
 		printf("Difficulty has been increased\n");
 		Sleep(3000);
 		for (int i = 0; i < 1; i++) {
-			arrayEnemy[i].health *= 1.5;
-			arrayEnemy[i].damage *= 1.5;
-			arrayEnemy[i].gold *= 1.5;
+			arrayEnemy[i].health *= 1.5*difficultyWaveCount;
+			arrayEnemy[i].damage *= 1.5*difficultyWaveCount;
+			arrayEnemy[i].gold *= 1.5*difficultyWaveCount;
 		}
 		for (int i = 0; i < 1; i++) {
-			arrayBoss[i].health *= 1.5;
-			arrayBoss[i].damage *= 1.5;
-			arrayBoss[i].gold *= 1.5;
+			arrayBoss[i].health *= 1.5*difficultyWaveCount;
+			arrayBoss[i].damage *= 1.5*difficultyWaveCount;
+			arrayBoss[i].gold *= 1.5*difficultyWaveCount;
 		}
 		for (int i = 0; i < 1; i++) {
-			arrayDungeonEnemy[i].health *= 1.5;
-			arrayDungeonEnemy[i].damage *= 1.5;
-			arrayDungeonEnemy[i].gold *= 1.5;
+			arrayDungeonEnemy[i].health *= 1.5*difficultyWaveCount;
+			arrayDungeonEnemy[i].damage *= 1.5*difficultyWaveCount;
+			arrayDungeonEnemy[i].gold *= 1.5*difficultyWaveCount;
 		}
+		difficultyWaveCount++;
 	}
 }
 

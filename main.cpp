@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <conio.h>
@@ -16,6 +16,7 @@ const int x = SCREEN_WIDTH, y = SCREEN_HEIGHT;
 
 int map[y][x];
 bool game = true;
+int difficultyWaveCount=1;
 
 Character hero[1];
 Healing heal[1];
@@ -35,6 +36,8 @@ void BinaryFileOutput();
 void InteractionWithTheChest();
 void enemy_activation();
 
+void wasted();
+
 int main() {
 	srand(NULL);
 	Menu();
@@ -48,7 +51,7 @@ int main() {
 		enemy_activation();
 		characterMoves();
 		system("cls");
-		IncreaseDifficulty(hero->steps, villian, arrayBoss, arrayDungeonEnemy);
+		IncreaseDifficulty(hero->steps, difficultyWaveCount, villian, arrayBoss, arrayDungeonEnemy);
 	} while (game == true);
 }
 
@@ -95,10 +98,9 @@ void draw_map() {
 				map[i][j] = ' ';
 		}
 	}
-	printf("\nhealth: %d", hero->health);
-	printf("\ndamage: %d", hero->damage);
-	printf("\ngold: %d", hero->gold);
-	printf("\nsteps: %d", hero->steps);
+	printf("\nHealth: %d | Damage: %d", hero->health, hero->damage);
+	printf("\nGold: %d | Steps: %d", hero->gold, hero->steps);
+	printf("\nDifficulty Wave: %d", difficultyWaveCount-1);
 }
 
 void enemy_activation() {
@@ -114,10 +116,7 @@ void enemy_activation() {
 		map[hero->yCharacter][hero->xCharacter] == 'B')
 		IndexEnemy = 2;
 	else if (map[(hero->yCharacter) - 1][hero->xCharacter] == 'D' || map[hero->yCharacter][(hero->xCharacter) - 1] == 'D' ||
-		map[hero->yCharacter][(hero->xCharacter) + 1] == 'D' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'D' ||
-		map[hero->yCharacter][hero->xCharacter] == 'D')
-		IndexEnemy = 3;
-
+		map[hero->yCharacter][(hero->xCharacter) + 1] == 'D' || map[(hero->yCharacter) + 1][hero->xCharacter] == 'D' || map[hero->yCharacter][hero->xCharacter] == 'D') IndexEnemy = 3; 
 	printf("\n");
 	
 	death = Battle(IndexEnemy, hero, villian, arrayBoss, arrayDungeonEnemy);
@@ -127,8 +126,16 @@ void enemy_activation() {
 		map[hero->yCharacter][hero->xCharacter] == death) {
 		map[(hero->yCharacter) - 1][hero->xCharacter] = ' ';
 		map[hero->yCharacter][(hero->xCharacter) - 1] = ' ';
-		map[hero->yCharacter][(hero->xCharacter) + 1] = ' '; 
+		map[hero->yCharacter][(hero->xCharacter) + 1] = ' ';
 		map[(hero->yCharacter) + 1][hero->xCharacter] = ' ';
+		EnemyStats(villian);
+		BossStats(arrayBoss);
+		DungeonEnemyStats(arrayDungeonEnemy);
+
+		IncreaseDifficulty(hero->steps, difficultyWaveCount, villian, arrayBoss, arrayDungeonEnemy);
+	}
+	else if (death == '@') {
+		wasted();
 	}
 
 }
@@ -175,6 +182,7 @@ void SaveFile() {
 	fwrite(&hero->damage, sizeof(int), 1, printBinary);
 	fwrite(&hero->gold, sizeof(int), 1, printBinary);
 	fwrite(&hero->steps, sizeof(int), 1, printBinary);
+	fwrite(&difficultyWaveCount, sizeof(int), 1, printBinary);
 	fclose(printBinary);
 }
 
@@ -188,6 +196,7 @@ void BinaryFileOutput() {
 	fread(&hero->damage, sizeof(int), 1, output);
 	fread(&hero->gold, sizeof(int), 1, output);
 	fread(&hero->steps, sizeof(int), 1, output);
+	fread(&difficultyWaveCount, sizeof(int), 1, output);
 	fclose(output);
 }
 
@@ -232,4 +241,26 @@ void Menu() {
 	if (selection == 3) {
 		exit(1);
 	}
+}
+
+void wasted() {
+	system("cls");
+		
+	FILE* wasted;
+
+	if (fopen_s(&wasted, "wasted.txt", "r") != 0) {
+		printf("FILE COULDNT OPEN\n");
+		exit(1);
+	}
+	int text[6][55];
+
+	for (int i = 0; i < 6; i++)
+		for (int j = 0; j < 55; j++)
+			fscanf_s(wasted, "%c", &text[i][j]);
+
+	for (int i = 0; i < 6; i++)
+		for (int j = 0; j < 55; j++)
+			printf("%c", text[i][j]);
+	Sleep(3000);
+	exit(1);
 }
