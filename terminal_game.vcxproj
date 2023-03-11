@@ -137,7 +137,6 @@
     <ClInclude Include="character_parameters.h" />
     <ClInclude Include="fight.h" />
     <ClInclude Include="increase.h" />
-    <ClInclude Include="stopping_objects.h" />
     <ClInclude Include="trade.h" />
   </ItemGroup>
   <ItemGroup>

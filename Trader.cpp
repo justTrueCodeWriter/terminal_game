@@ -130,4 +130,5 @@ void TradingWindow(Character arrayCharacter[1])
 		printf("See you next time!\n");
 	}
 	}
+	system("cls");
 }
