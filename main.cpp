@@ -1,6 +1,8 @@
-﻿#include <stdio.h>
+﻿#pragma comment (lib, "winmm.lib")
+
+#include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+#include <Windows.h>
 #include <conio.h>
 #include <math.h>
 
@@ -47,6 +49,7 @@ void enemy_activation();
 void wasted();
 
 int main() {
+	PlaySound(L"background.wav", NULL, SND_ASYNC | SND_LOOP);
 	srand(NULL);
 	Menu();
 	GetMap();
@@ -112,7 +115,7 @@ void draw_map() {
 			}
 
 			else if (map[hero->yCharacter][hero->xCharacter] == 'T') {
-				map[hero->yCharacter][hero->xCharacter] = ' ';
+				
 				InteractionWithTheChest();
 			}
 
@@ -341,6 +344,7 @@ void InteractionWithTheChest() {
 	system("cls");
 	switch (switcher) {
 	case 1:
+		map[hero->yCharacter][hero->xCharacter] = ' ';
 		hero->gold += chest->gold;
 		printf("%d gold received\n", chest->gold); Sleep(520);
 		system("cls");
